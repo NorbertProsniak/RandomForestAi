@@ -38,13 +38,13 @@ plot(st, tp_args = list(FUN = myfun), ep_args = list(justmin = 20))
 
 
 
-covtype2<-cf2[,c(1:5)] #12 danych liczbowych z cech¹
-covtype2$class <- as.factor(covtype2$class) #przekonwertowanie na as faktor
+covtype2<-cf2[,c(1:5)]
+covtype2$class <- as.factor(covtype2$class)
 table(covtype2$class)
 
-train<-sample(1:nrow(covtype2),300)  #definiowanie zbioru treningowego
-covtype.train<-covtype2[train,]  #wybieramy treningowy zbiór
-covtype.test<-covtype2[-train,]  #wybieramy testowy zbiór
+train<-sample(1:nrow(covtype2),300)  
+covtype.train<-covtype2[train,]  
+covtype.test<-covtype2[-train,] 
 
 rf <- randomForest(class ~ . , data = covtype.train)
 cm <- table(covtype.test$class, predict(rf, covtype.test))
